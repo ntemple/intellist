@@ -6,7 +6,7 @@ define("TWEETS_COLLECTION", "tweets");
 
 function get_db_connection() {
 
-    $uri = "mongodb://127.0.0.1/";
+    $uri = "mongodb://localhost";
 
     if ( isset($_ENV["OPENSHIFT_MONGODB_DB_HOST"]) ) {
         $host   = $_ENV["OPENSHIFT_MONGODB_DB_HOST"];

@@ -1,1 +1,5 @@
-<?php phpinfo();
+<?php
+
+require "config.php";
+
+phpinfo();

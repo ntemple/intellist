@@ -6,3 +6,12 @@ if (!file_exists($file)) {
 }
 
 $autoload = require_once $file;
+
+$file = __DIR__.'/../libs/config.php';
+if (!file_exists($file)) {
+    throw new RuntimeException('Missing config file.');
+}
+
+$autoload = require_once $file;
+
+

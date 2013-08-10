@@ -10,6 +10,8 @@ branches:
 
 script: phpunit --coverage-text
 
+services: mongodb
+
 notifications:
   email:
     - nick@nicktemple.com

@@ -1,17 +1,21 @@
-2;
 <?php
 
-define("OPENSHIFT_DB",      "phpmongotweet");
+define("OPENSHIFT_DB",      "intellist");
 define("TWEETS_COLLECTION", "tweets");
 
 
 function get_db_connection() {
-    $host   = $_ENV["OPENSHIFT_MONGODB_DB_HOST"];
-    $user   = $_ENV["OPENSHIFT_MONGODB_DB_USERNAME"];
-    $passwd = $_ENV["OPENSHIFT_MONGODB_DB_PASSWORD"];
-    $port   = $_ENV["OPENSHIFT_MONGODB_DB_PORT"];
 
-    $uri = "mongodb://" . $user . ":" . $passwd . "@" . $host . ":" . $port;
+    $uri = "mongodb://127.0.0.1/";
+
+    if ( isset($_ENV["OPENSHIFT_MONGODB_DB_HOST"]) ) {
+        $host   = $_ENV["OPENSHIFT_MONGODB_DB_HOST"];
+        $user   = $_ENV["OPENSHIFT_MONGODB_DB_USERNAME"];
+        $passwd = $_ENV["OPENSHIFT_MONGODB_DB_PASSWORD"];
+        $port   = $_ENV["OPENSHIFT_MONGODB_DB_PORT"];
+
+        $uri = "mongodb://" . $user . ":" . $passwd . "@" . $host . ":" . $port;
+    }
     $mongo = new Mongo($uri);
     return $mongo;
 }

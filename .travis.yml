@@ -1,6 +1,5 @@
 language: php
 php:
-  - 5.4
   - 5.3
 
 branches:
@@ -8,6 +7,7 @@ branches:
     - master
     - develop
 
+before_script: phpenv config-add misc/travis-phpconfig.ini
 script: phpunit --coverage-text
 
 services: mongodb

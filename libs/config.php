@@ -2,30 +2,11 @@
 
 define("OPENSHIFT_DB",      "intellist");
 define("TWEETS_COLLECTION", "tweets");
+require("util.php");
+require("../vendor/autoload.php");
+require("SplAutoloader.php");
 
 
-function get_db_connection() {
-
-    $uri = "mongodb://localhost";
-
-    if ( isset($_ENV["OPENSHIFT_MONGODB_DB_HOST"]) ) {
-        $host   = $_ENV["OPENSHIFT_MONGODB_DB_HOST"];
-        $user   = $_ENV["OPENSHIFT_MONGODB_DB_USERNAME"];
-        $passwd = $_ENV["OPENSHIFT_MONGODB_DB_PASSWORD"];
-        $port   = $_ENV["OPENSHIFT_MONGODB_DB_PORT"];
-
-        $uri = "mongodb://" . $user . ":" . $passwd . "@" . $host . ":" . $port;
-    }
-    $mongo = new Mongo($uri);
-    return $mongo;
-}
-
-function get_database($dbname) {
-    $conn = get_db_connection();
-    return $conn->$dbname;
-}
-
-function get_collection($collection) {
-    $db = get_database(OPENSHIFT_DB);
-    return $db->$collection;
-}
+//$classLoader = new SplClassLoader('Intellispire\ListManager', __DIR__ . 'Intellispire/ListManager');
+$classLoader = new SplClassLoader(null,  __DIR__ );
+$classLoader->register();

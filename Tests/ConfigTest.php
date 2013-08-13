@@ -16,14 +16,17 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     }
 
     function testItemSave() {
+
+        \Intellispire\ListManager\Item::truncate();
+
         for ($i = 0; $i < 100; $i++) {
-            $item = new Item();
+            $item = new \Intellispire\ListManager\Item();
             $item->title = "My New Item $i";
             $item->save();
         }
 
-        Item::drop();
-        $items = Item::getItems();
+        $items = \Intellispire\ListManager\Item::getItems();
+
         $this->assertNotNull($items);
         $this->assertTrue(count($items) === 100);
     }
